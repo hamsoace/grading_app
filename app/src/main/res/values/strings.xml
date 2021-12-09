@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Marks Calculator</string>
+    <string name="add_entry">SUBMIT</string>
+    <string name="delete_entry">DELETE</string>
+    <string name="view_all_marks">View Marks</string>
+    <string name="student_marks_collection">Students marks</string>
+    <string name="enter_marks">Enter Marks</string>
+    <string name="textview">View</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+</resources>
