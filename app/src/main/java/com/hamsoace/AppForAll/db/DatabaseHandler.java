@@ -26,7 +26,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
-
+//This Creates the database and sets up how viewmarks activity will view the results
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_MARKS + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -38,12 +38,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
+    //Used to upgrade the database to new version
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MARKS);
         onCreate(db);
     }
 
+    //add marks to the database
     public void addMarks(Marks marks) {
         ContentValues values = new ContentValues();
 
@@ -57,13 +59,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-
+//deletes the database
     public void deleteMarks(String studentFirstName) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_MARKS + " WHERE " + COLUMN_STUDENT_FIRST_NAME + "=\"" + studentFirstName + "\"");
 //        db.execSQL("DELETE FROM " + TABLE_MARKS + " WHERE " + COLUMN_STUDENT_LAST_NAME + "=\"" + studentLastName + "\"");
     }
 
+    //this is used to converte the database to string
     public String databaseToString() {
         String DBString = "";
         String course;
@@ -91,16 +94,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 DBString += (c.getString(c.getColumnIndex(TOTAL_MARKS)) + " ");
 
 
-//                // add percentage without credits
-//                average = credit + totalMarks;
-//                percentage = average.floatValue() / 4;
-//                DBString += (String.format("%.2f", percentage) + " ");
-//
-//                // add percentage with credits
-//                average = 4 * credit;
-//                percentage = average.floatValue() / 15;
-//                DBString += String.format("%.2f", percentage);
-//                DBString += "\n";
 
             }
             c.moveToNext();
